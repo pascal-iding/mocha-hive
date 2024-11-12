@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/themes/default_theme.dart';
 
-import 'package:mocha_hive/pages/authentication/sign_in.dart';
+import 'package:mocha_hive/pages/authentication/sign_in/sign_in.dart';
 
 
 // This is the starting point of the application.

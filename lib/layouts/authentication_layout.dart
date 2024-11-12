@@ -2,15 +2,17 @@
 import 'package:flutter/material.dart';
 
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class AuthenticationLayout extends StatefulWidget {
+  final Widget child;
+
+  const AuthenticationLayout({super.key, required this.child});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<AuthenticationLayout> createState() => _AuthenticationLayoutState();
 }
 
 
-class _SignInState extends State<SignIn> {
+class _AuthenticationLayoutState extends State<AuthenticationLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +23,12 @@ class _SignInState extends State<SignIn> {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceContainer,
+                color: Theme.of(context).colorScheme.surfaceContainerHigh,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(29.0),
-                child: Column(
-                  children: [
-                  
-                  ]
-                ),
+                child: widget.child,
               )
             )
           )

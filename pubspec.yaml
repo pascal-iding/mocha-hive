@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.14
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +18,14 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/
+  fonts:
+    - family: Bitter
+      fonts:
+        - asset: assets/fonts/Bitter/Bitter-Regular.ttf
+        - asset: assets/fonts/Bitter/Bitter-Bold.ttf
+        - asset: assets/fonts/Bitter/Bitter-ExtraBold.ttf
+        - asset: assets/fonts/Bitter/Bitter-Thin.ttf
+        - asset: assets/fonts/Bitter/Bitter-Medium.ttf
+        - asset: assets/fonts/Bitter/Bitter-ExtraLight.ttf

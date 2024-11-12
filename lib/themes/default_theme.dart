@@ -20,13 +20,77 @@ class DefaultTheme {
     onSecondary: Color.fromARGB(255, 255, 255, 255),
     onSurface: Color.fromARGB(255, 255, 255, 255),
     onSurfaceVariant: Color.fromARGB(255, 107, 107, 107),
+    outline: Colors.black,
     brightness: Brightness.dark,
   );
 
   ColorScheme colorSchemeLight() => throw UnimplementedError();
 
-  TextTheme textTheme(ColorScheme colorScheme) => const TextTheme(
-    
+  TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
+    displayLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'Bitter',
+      color: colorScheme.onSurface,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w300,
+      color: colorScheme.onSurface,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: colorScheme.onSurface,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'Bitter',
+      color: colorScheme.onSurface,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Bitter',
+      color: colorScheme.onSurface,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'Bitter',
+      color: colorScheme.onSurface,
+    ),
   );
 
   ThemeData dark() => theme(colorSchemeDark());
