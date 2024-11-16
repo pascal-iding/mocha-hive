@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/layouts/authentication_layout.dart';
-import 'package:mocha_hive/pages/authentication/sign_in/partials/login_form.dart';
+import 'package:mocha_hive/layouts/authentication/authentication_layout.dart';
+import 'package:mocha_hive/pages/authentication/partials/login_form.dart';
 import 'package:mocha_hive/constants/authentication_state.dart';
-import 'package:mocha_hive/pages/authentication/sign_in/partials/authentication_success.dart';
+import 'package:mocha_hive/pages/authentication/partials/authentication_success.dart';
 
 
 class SignIn extends StatefulWidget {

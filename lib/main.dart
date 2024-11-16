@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/themes/default_theme.dart';
-
-import 'package:mocha_hive/pages/authentication/sign_in/sign_in.dart';
+import 'package:mocha_hive/pages/authentication/sign_in.dart';
+import 'package:mocha_hive/pages/profile/profile_creation_page.dart';
 
 
 // This is the starting point of the application.
@@ -20,9 +21,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MochaHive',
-      theme: theme.dark(),
-      themeMode: ThemeMode.dark,
-      home: const SignIn(),
+      theme: theme.light(),
+      themeMode: ThemeMode.light,
+      home: const ProfileCreationPage(),
     );
   }
 }

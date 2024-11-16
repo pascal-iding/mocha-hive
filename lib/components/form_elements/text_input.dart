@@ -54,12 +54,19 @@ class _TextInputState extends State<TextInput> {
         decoration: InputDecoration(
           hintText: widget.hint,
           errorText: widget.error,
+          fillColor: Theme.of(context).colorScheme.surfaceContainer,
+          filled: true,
           contentPadding: const EdgeInsets.symmetric(
             vertical: 10, 
             horizontal: 10
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.outline),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.outline),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -84,7 +91,7 @@ class _TextInputState extends State<TextInput> {
       children: widget.additionalInfo!.map((info) {
         return Text(
           '• $info',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         );

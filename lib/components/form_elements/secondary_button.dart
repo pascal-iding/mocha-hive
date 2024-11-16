@@ -4,13 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 class SecondaryButton extends StatefulWidget {
-  final String label;
-  final String? iconPath;
+  final String iconPath;
 
   const SecondaryButton({
     super.key,
-    this.iconPath,
-    required this.label
+    required this.iconPath,
   });
 
   @override
@@ -22,13 +20,12 @@ class _SecondaryButtonState extends State<SecondaryButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 45,
-      child: OutlinedButton(
+      width: 45,
+      child: FilledButton(
         onPressed: () {}, 
-        style: OutlinedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 15
-          ),
+        style: FilledButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+          padding: const EdgeInsets.all(0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -37,23 +34,12 @@ class _SecondaryButtonState extends State<SecondaryButton> {
             width: 1,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (widget.iconPath != null)
-              SvgPicture.asset(
-                widget.iconPath!,
-                width: 24,
-                height: 24,
-              ),
-            const SizedBox(width: 9),
-            Text(
-              widget.label,
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-          ]
-        )
+        child: SvgPicture.asset(
+          widget.iconPath,
+          width: 24,
+          height: 24,
+          fit: BoxFit.contain,
+        ),
       )
     );
   }

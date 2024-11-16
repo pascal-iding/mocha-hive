@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mocha_hive/components/form_elements/text_input.dart';
 import 'package:mocha_hive/components/form_elements/primary_button.dart';
 import 'package:mocha_hive/components/form_elements/secondary_button.dart';
-import 'package:mocha_hive/pages/authentication/sign_in/partials/button_seperator.dart';
+import 'package:mocha_hive/pages/authentication/partials/button_seperator.dart';
 
 
 class LoginForm extends StatefulWidget {
@@ -18,10 +18,16 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TextInput(
+        Text(
+          'Willkommen 👋',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 9),
+        TextInput(
           label: 'Email',
-          hint: 'Email ...',
+          hint: 'deine@email.com',
           isEmail: true,
           additionalInfo: [
             'Mit der Anmeldung stimmst du unseren AGBs zu.',
@@ -32,10 +38,18 @@ class _LoginFormState extends State<LoginForm> {
         const SizedBox(height: 9),
         ButtonSeperator(),
         const SizedBox(height: 9),
-        SecondaryButton(
-          label: 'Mit Google fortfahren',
-          iconPath: 'assets/icons/google_icon.svg',
-        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SecondaryButton(
+              iconPath: 'assets/icons/google_icon.svg',
+            ),
+            const SizedBox(width: 9),
+            SecondaryButton(
+              iconPath: 'assets/icons/discord_icon.svg',
+            ),
+          ]
+        )
       ]
     );
   }

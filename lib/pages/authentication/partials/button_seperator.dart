@@ -17,10 +17,8 @@ class ButtonSeperator extends StatelessWidget {
         ),
         const SizedBox(width: 9),
         Text(
-          'oder',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
+          'Oder',
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(width: 9),
         Expanded(
