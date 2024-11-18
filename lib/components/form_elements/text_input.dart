@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class TextInput extends StatefulWidget {
-  final String label;
+  final String? label;
   final String? hint;
   final String? error;
   final bool? isEmail;
@@ -11,7 +11,7 @@ class TextInput extends StatefulWidget {
 
   const TextInput({
     super.key,
-    required this.label,
+    this.label,
     this.hint,
     this.error,
     this.isEmail=false,
@@ -32,10 +32,11 @@ class _TextInputState extends State<TextInput> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                widget.label,
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
+              if (widget.label != null)
+                Text(
+                  widget.label!,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
               const SizedBox(height: 9),
               _getTextField(context),
               const SizedBox(height: 9),

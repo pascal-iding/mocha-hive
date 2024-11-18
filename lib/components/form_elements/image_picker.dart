@@ -69,18 +69,18 @@ class _ImagePickerState extends State<ImagePicker> {
               top: 8,
               right: 8,
               child: Container(
-                width: 30,
-                height: 30,
+                width: 20,
+                height: 20,
+                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceContainer,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(13),
                 ),
                 child: SvgPicture.asset(
                   'assets/icons/x_icon.svg',
-                  width: 24,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.onSurface,
-                    BlendMode.srcIn,
+                    BlendMode.srcIn
                   ),
                 ),
               )

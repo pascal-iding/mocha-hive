@@ -34,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
           ],
         ),
         const SizedBox(height: 9),
-        PrimaryButton(label: 'Anmelden'),
+        PrimaryButton(label: 'Anmelden', onPressed: () => {}),
         const SizedBox(height: 9),
         ButtonSeperator(),
         const SizedBox(height: 9),

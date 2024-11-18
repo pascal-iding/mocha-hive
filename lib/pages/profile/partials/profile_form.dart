@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/components/form_elements/primary_button.dart';
 import 'package:mocha_hive/components/form_elements/text_input.dart';
-import 'package:mocha_hive/components/form_elements/image_picker.dart';
 
 
 class ProfileForm extends StatefulWidget {
-  const ProfileForm({super.key});
+  final Function onContinueButtonPressed;
+
+  const ProfileForm({super.key, required this.onContinueButtonPressed});
 
   @override
   State<ProfileForm> createState() => _ProfileFormState();
@@ -35,8 +36,10 @@ class _ProfileFormState extends State<ProfileForm> {
           additionalInfo: ['Dein Vorname wird nur deinen Freunden angezeigt'],
         ),
         const SizedBox(height: 9),
-        ImagePicker(),
-        PrimaryButton(label: 'Weiter'),
+        PrimaryButton(
+          label: 'Weiter',
+          onPressed: widget.onContinueButtonPressed,
+        ),
       ]
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/themes/default_theme.dart';
 import 'package:mocha_hive/pages/authentication/sign_in.dart';
-import 'package:mocha_hive/pages/profile/profile_creation_page.dart';
+import 'package:mocha_hive/pages/main_page/main_page.dart';
 
 
 // This is the starting point of the application.
@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
       title: 'MochaHive',
       theme: theme.light(),
       themeMode: ThemeMode.light,
-      home: const ProfileCreationPage(),
+      home: const MainPage(),
     );
   }
 }

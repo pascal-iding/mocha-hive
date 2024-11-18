@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatefulWidget {
   final String label;
+  final Function onPressed;
 
   const PrimaryButton({
     super.key, 
-    required this.label
+    required this.label,
+    required this.onPressed
   });
 
   @override
@@ -21,7 +23,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       height: 45,
       width: double.infinity,
       child: FilledButton(
-        onPressed: () {}, 
+        onPressed: () => widget.onPressed(), 
         style: FilledButton.styleFrom(
           padding: const EdgeInsets.symmetric(
             vertical: 5,

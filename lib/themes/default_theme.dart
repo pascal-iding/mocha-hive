@@ -70,7 +70,7 @@ class DefaultTheme {
     ),
     bodyMedium: TextStyle(
       fontSize: 14,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       fontFamily: 'Lato',
       color: colorScheme.onSurface,
     ),
