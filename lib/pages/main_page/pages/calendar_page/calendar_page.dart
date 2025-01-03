@@ -7,9 +7,7 @@ import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/m
 
 
 class CalendarPage extends StatefulWidget {
-  final Function(Widget?) onFloatingActionButtonChanged;
-
-  const CalendarPage({required this.onFloatingActionButtonChanged, super.key});
+  const CalendarPage({super.key});
 
   @override
   State<CalendarPage> createState() => _CalendarPageState();
@@ -26,8 +24,6 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    widget.onFloatingActionButtonChanged(null);
-
     return MainPageLayout(
       tabBarLength: 2,
       tabBarTitles: const ['Mein Kalender', 'Meine Hangouts'],

@@ -1,10 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:vxstate/vxstate.dart';
 
 import 'package:mocha_hive/pages/main_page/pages/calendar_page/calendar_page.dart';
 import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_page.dart';
 import 'package:mocha_hive/pages/main_page/sidebar/sidebar.dart';
 import 'package:mocha_hive/pages/main_page/bottom_navigation_bar/bottom_navigation_bar.dart' as mocha_hive;
+import 'package:mocha_hive/stores/main_page_store.dart';
+import 'package:mocha_hive/components/DynamicFloatingActionButton.dart';
+import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
 
 
 /// The main page is responsible for the 3 main sections of the app:
@@ -23,33 +27,16 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final PageController _pageController = PageController();
-  Widget? _floatingActionButton;
   late List<Widget> _pagesList;
 
   @override
   void initState() {
     super.initState();
     _pagesList = <Widget>[
-      CalendarPage(onFloatingActionButtonChanged: (fab) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _updateFloatingActionButton(fab);
-        });
-      }),
+      CalendarPage(),
       Text('Hangouts'),
-      FriendsPage(onFloatingActionButtonChanged: (fab) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _updateFloatingActionButton(fab);
-        });
-      }),
+      FriendsPage(),
     ];
-  }
-
-  /// A callback function that is called whenever the floating action button
-  /// in one of the child pages changes.
-  void _updateFloatingActionButton(Widget? fab) {
-    setState(() {
-      _floatingActionButton = fab;
-    });
   }
 
   void _onItemTapped(int index) {
@@ -62,6 +49,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [SetOnFloatingActionButtonClicked]);
+    MainPageStore store = VxState.store as MainPageStore;
+
     return Scaffold(
       endDrawer: const Sidebar(),
       body: Column(
@@ -75,7 +65,11 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
-      floatingActionButton: _floatingActionButton,
+      floatingActionButton: store.onFloatingActionButtonClicked != null 
+        ? DynamicFloatingActionButton(
+            onPressed: store.onFloatingActionButtonClicked!,
+        )
+        : null,
       bottomNavigationBar: mocha_hive.BottomNavigationBar(
         onItemTapped: (int index) => _onItemTapped(index),
       ),

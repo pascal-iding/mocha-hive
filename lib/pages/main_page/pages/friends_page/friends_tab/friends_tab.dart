@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_tab/friend_tile/friend_tile.dart';
 import 'package:mocha_hive/components/DynamicFloatingActionButton.dart';
 import 'add_friend_modal/add_friend_modal.dart';
+import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
 
 
 class FriendsTab extends StatefulWidget {
-  final Function(Widget?) onFloatingActionButtonChanged;
-
-  const FriendsTab({required this.onFloatingActionButtonChanged, super.key});
+  const FriendsTab({super.key});
 
   @override
   State<FriendsTab> createState() => _FriendsTabState();
@@ -48,13 +47,7 @@ class _FriendsTabState extends State<FriendsTab> {
 
   @override
   Widget build(BuildContext context) {
-    widget.onFloatingActionButtonChanged(
-      DynamicFloatingActionButton(
-        onPressed: () {
-          showModal(context);
-        }
-      )
-    );
+    SetOnFloatingActionButtonClicked(() => showModal(context));
 
     return GridView.builder(
       padding: const EdgeInsets.only(top: 17.0),
