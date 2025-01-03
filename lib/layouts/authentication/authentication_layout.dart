@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/layouts/authentication/partials/background_image.dart';
-import 'package:mocha_hive/layouts/authentication/partials/blur_effect.dart';
-import 'package:mocha_hive/layouts/authentication/partials/form_container.dart';
+import 'package:mocha_hive/layouts/authentication/background_image/background_image.dart';
+import 'package:mocha_hive/layouts/authentication/blur_effect/blur_effect.dart';
+import 'package:mocha_hive/layouts/authentication/form_container/form_container.dart';
 
 
 class AuthenticationLayout extends StatefulWidget {

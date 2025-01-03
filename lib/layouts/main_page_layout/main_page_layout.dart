@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/layouts/main_page_layout/partials/default_appbar.dart';
-import 'package:mocha_hive/layouts/main_page_layout/partials/sticky_header/sticky_header.dart';
+import 'package:mocha_hive/layouts/main_page_layout/default_appbar/default_appbar.dart';
+import 'package:mocha_hive/layouts/main_page_layout/sticky_header/sticky_header.dart';
 
 
 class MainPageLayout extends StatefulWidget {

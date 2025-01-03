@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/layouts/authentication/authentication_layout.dart';
-import 'package:mocha_hive/pages/profile/partials/profile_form.dart';
-import 'package:mocha_hive/pages/profile/partials/profile_picture_form.dart';
+import 'package:mocha_hive/pages/profile/profile_form/profile_form.dart';
+import 'package:mocha_hive/pages/profile/profile_picture_form/profile_picture_form.dart';
 import 'package:mocha_hive/constants/profile_creation_state.dart';
 
 

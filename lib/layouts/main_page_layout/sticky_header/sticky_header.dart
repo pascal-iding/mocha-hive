@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/layouts/main_page_layout/partials/sticky_header/partials/sliver_appbar_delegate.dart';
+import 'package:mocha_hive/layouts/main_page_layout/sticky_header/sliver_appbar_delegate/sliver_appbar_delegate.dart';
 import 'package:mocha_hive/components/form_elements/text_input.dart';
 
 

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/layouts/main_page_layout/main_page_layout.dart';
-import 'package:mocha_hive/pages/main_page/partials/friends/partials/friends_tab/friends_tab.dart';
+import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_tab/friends_tab.dart';
 
 
 class FriendsPage extends StatefulWidget {

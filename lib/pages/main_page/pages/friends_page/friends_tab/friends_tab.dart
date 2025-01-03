@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/pages/main_page/partials/friends/partials/friends_tab/partials/friend_tile.dart/friend_tile.dart';
+import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_tab/friend_tile/friend_tile.dart';
 import 'package:mocha_hive/components/DynamicFloatingActionButton.dart';
-import 'partials/add_friend_modal/add_friend_modal.dart';
+import 'add_friend_modal/add_friend_modal.dart';
 
 
 class FriendsTab extends StatefulWidget {

@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/components/form_elements/option_selection_field.dart';
-import 'package:mocha_hive/pages/main_page/partials/calendar/partials/my_hangouts_page/partials/hangout_field.dart';
-import 'package:mocha_hive/pages/main_page/partials/calendar/partials/my_hangouts_page/partials/date_seperator.dart';
+import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/hangout_field/hangout_field.dart';
+import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/date_seperator/date_seperator.dart';
 
 
 class MyHangoutsPage extends StatefulWidget {

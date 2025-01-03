@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/pages/main_page/partials/calendar/calendar_page.dart';
-import 'package:mocha_hive/pages/main_page/partials/friends/friends_page.dart';
-import 'package:mocha_hive/pages/main_page/partials/sidebar.dart';
-import 'package:mocha_hive/pages/main_page/partials/bottom_navigation_bar.dart' as mocha_hive;
+import 'package:mocha_hive/pages/main_page/pages/calendar_page/calendar_page.dart';
+import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_page.dart';
+import 'package:mocha_hive/pages/main_page/sidebar/sidebar.dart';
+import 'package:mocha_hive/pages/main_page/bottom_navigation_bar/bottom_navigation_bar.dart' as mocha_hive;
 
 
 /// The main page is responsible for the 3 main sections of the app:

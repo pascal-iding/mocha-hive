@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mocha_hive/components/form_elements/text_input.dart';
 import 'package:mocha_hive/components/form_elements/primary_button.dart';
 import 'package:mocha_hive/components/form_elements/secondary_button.dart';
-import 'package:mocha_hive/pages/authentication/partials/button_seperator.dart';
+import 'package:mocha_hive/pages/authentication/button_seperator/button_seperator.dart';
 
 
 class LoginForm extends StatefulWidget {
