@@ -35,17 +35,34 @@ class _CalendarFieldState extends State<CalendarField> {
 
   @override
   void dispose() {
-    _horizontalScrollController.position.isScrollingNotifier.removeListener(() {});
+    if (_horizontalScrollController.hasClients) {
+      _horizontalScrollController.position.isScrollingNotifier.removeListener(() {});
+    }
     _horizontalScrollController.dispose();
     super.dispose();
   }
 
+  /// Make the scroll position snap to the nearest day, when scrolled horizontally
   void _adjustScrollPosition() {
+    if (_horizontalScrollController.position.isScrollingNotifier.value) {
+      return; // Exit if a scroll is already in progress
+    }
+
     double currentScrollPosition = _horizontalScrollController.position.pixels;
-    double newScrollPosition = (currentScrollPosition / 63).round() * 63;
-    _horizontalScrollController.jumpTo(newScrollPosition);
+    double newScrollPosition = (currentScrollPosition / 63).floor() * 63;
+
+    // Ensure no drag or hold is active before animating
+    if (_horizontalScrollController.position.activity is! HoldScrollActivity &&
+        _horizontalScrollController.position.activity is! DragScrollActivity) {
+      _horizontalScrollController.animateTo(
+        newScrollPosition,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
+  /// Get the date range for the next 14 days
   void _getDateRange() {
     DateTime today = DateTime.now();
     List<DateTime> dateRange = [];
@@ -63,48 +80,51 @@ class _CalendarFieldState extends State<CalendarField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 63,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 63),
-              for (int i = 9; i < 24; i++)
-                Container(
-                  width: 63,
-                  height: 63,
-                  alignment: Alignment.center,
-                  child: Text(
-                    '${i.toString().padLeft(2, '0')}:00',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            controller: _horizontalScrollController,
-            scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: const EdgeInsets.only(top: 17),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 63,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).primaryColor.withOpacity(0.3),
+            ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _getDateField(),
-                _getTimeSelectionField(),
-              ]
+                const SizedBox(height: 63),
+                for (int i = 9; i < 24; i++)
+                  Container(
+                    width: 63,
+                    height: 63,
+                    alignment: Alignment.center,
+                    child: Text(
+                      '${i.toString().padLeft(2, '0')}:00',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              controller: _horizontalScrollController,
+              scrollDirection: Axis.horizontal,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _getDateField(),
+                  _getTimeSelectionField(),
+                ]
+              )
             )
           )
-        )
-      ],
+        ],
+      )
     );
   }
 

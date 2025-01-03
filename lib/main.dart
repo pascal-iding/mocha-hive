@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/themes/default_theme.dart';
-import 'package:mocha_hive/pages/authentication/sign_in.dart';
 import 'package:mocha_hive/pages/main_page/main_page.dart';
 
 

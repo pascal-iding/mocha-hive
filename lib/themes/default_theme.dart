@@ -81,12 +81,12 @@ class DefaultTheme {
       fontFamily: 'Lato',
       color: colorScheme.onSurfaceVariant,
     ),
-    // labelLarge: TextStyle(
-    //   fontSize: 24,
-    //   fontWeight: FontWeight.w500,
-    //   fontFamily: 'Bitter',
-    //   color: colorScheme.onSurface,
-    // ),
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat',
+      color: colorScheme.onSurface,
+    ),
     labelMedium: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,

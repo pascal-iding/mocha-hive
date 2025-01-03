@@ -1,67 +1,42 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/pages/main_page/partials/calendar/partials/my_calendar_tab.dart';
+import 'package:mocha_hive/layouts/main_page_layout/main_page_layout.dart';
+import 'package:mocha_hive/pages/main_page/partials/calendar/partials/my_calendar_page/my_calendar_page.dart';
+import 'package:mocha_hive/pages/main_page/partials/calendar/partials/my_hangouts_page/my_hangouts_page.dart';
 
 
 class CalendarPage extends StatefulWidget {
-  const CalendarPage({super.key});
+  final Function(Widget?) onFloatingActionButtonChanged;
+
+  const CalendarPage({required this.onFloatingActionButtonChanged, super.key});
 
   @override
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            const SizedBox(height: 17),
-            TabBar(
-              labelPadding: const EdgeInsets.all(0),
-              dividerColor: Theme.of(context).colorScheme.onSurfaceVariant,
-              tabs: [
-                _getTab('Mein Kalender'),
-                _getTab('Meine Hangouts'),
-              ],
-            ),
-            const Expanded(
-              child: TabBarView(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(height: 17),
-                      MyCalendarTab(),
-                    ],
-                  ),
-                  Center(child: Text('Content for Tab 2')),
-                ],
-              ),
-            ),
-          ],
-        ),
-      )
-    );
+  bool _showSearchBar = false;
+
+  void _onTabIndexChanged(int index) {
+    setState(() {
+      _showSearchBar = index == 1;
+    });
   }
 
-  Widget _getTab(String title) {
-    return Tab(
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              title, 
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelMedium,
-            )
-          )
-        ],
-      )
+  @override
+  Widget build(BuildContext context) {
+    widget.onFloatingActionButtonChanged(null);
+
+    return MainPageLayout(
+      tabBarLength: 2,
+      tabBarTitles: const ['Mein Kalender', 'Meine Hangouts'],
+      showSearch: _showSearchBar,
+      onTabIndexChanged: _onTabIndexChanged,
+      children: const [
+        MyCalendarPage(),
+        MyHangoutsPage(),
+      ],
     );
   }
 }
-

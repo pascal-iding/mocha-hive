@@ -2,19 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:mocha_hive/components/form_elements/text_input.dart';
-
 
 class DefaultAppBar extends StatelessWidget {
   final bool showBackButton;
   final String title;
-  final bool showSearchInput;
 
   const DefaultAppBar({
     super.key,
     this.showBackButton = false,
     required this.title,
-    this.showSearchInput = true
   });
 
   @override
@@ -68,12 +64,6 @@ class DefaultAppBar extends StatelessWidget {
               )
             ]
           ),
-          const SizedBox(height: 17),
-          showSearchInput
-            ? TextInput(
-                hint: 'Suche ...',
-              )
-            : const SizedBox(height: 45)
         ],
       )
     );

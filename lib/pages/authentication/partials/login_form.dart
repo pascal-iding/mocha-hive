@@ -43,10 +43,12 @@ class _LoginFormState extends State<LoginForm> {
           children: [
             SecondaryButton(
               iconPath: 'assets/icons/google_icon.svg',
+              onPressed: () => {},
             ),
             const SizedBox(width: 9),
             SecondaryButton(
               iconPath: 'assets/icons/discord_icon.svg',
+              onPressed: () => {},
             ),
           ]
         )

@@ -1,12 +1,18 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:mocha_hive/pages/main_page/partials/default_appbar.dart';
 import 'package:mocha_hive/pages/main_page/partials/calendar/calendar_page.dart';
+import 'package:mocha_hive/pages/main_page/partials/friends/friends_page.dart';
 import 'package:mocha_hive/pages/main_page/partials/sidebar.dart';
+import 'package:mocha_hive/pages/main_page/partials/bottom_navigation_bar.dart' as mocha_hive;
 
 
+/// The main page is responsible for the 3 main sections of the app:
+/// - Calendar
+/// - Hangouts
+/// - Friends
+/// Each of those pages is a separate widget that is displayed in a PageView.
+/// Those pages should use a main_page_layout as root layout.
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -14,75 +20,64 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    CalendarPage(),
-    Text('Hangouts'),
-    Text('Friends'),
-  ];
+class _MainPageState extends State<MainPage> {
+  final PageController _pageController = PageController();
+  Widget? _floatingActionButton;
+  late List<Widget> _pagesList;
+
+  @override
+  void initState() {
+    super.initState();
+    _pagesList = <Widget>[
+      CalendarPage(onFloatingActionButtonChanged: (fab) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _updateFloatingActionButton(fab);
+        });
+      }),
+      Text('Hangouts'),
+      FriendsPage(onFloatingActionButtonChanged: (fab) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _updateFloatingActionButton(fab);
+        });
+      }),
+    ];
+  }
+
+  /// A callback function that is called whenever the floating action button
+  /// in one of the child pages changes.
+  void _updateFloatingActionButton(Widget? fab) {
+    setState(() {
+      _floatingActionButton = fab;
+    });
+  }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Sidebar(),
+      endDrawer: const Sidebar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DefaultAppBar(
-            title: _selectedIndex == 0 
-              ? 'Kalender' 
-              : _selectedIndex == 1 
-              ? 'Hangouts' : 'Freunde',
-            showBackButton: false,
-            showSearchInput: false
-          ),
           Expanded(
-            child: _widgetOptions.elementAt(_selectedIndex)
-          )
+            child: PageView(
+              controller: _pageController,
+              children: _pagesList,
+            ),
+          ),
         ],
       ),
-      bottomNavigationBar: _getBottomNavBar(context)
-    );
-  }
-
-  Widget _getBottomNavBar(BuildContext context) {
-    return BottomAppBar(
-      color: Theme.of(context).colorScheme.surfaceContainerHigh,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/calendar_icon.svg', 
-              width: 24
-            ),
-            onPressed: () => _onItemTapped(0),
-          ),
-          const SizedBox(width: 26),
-          IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/heart_icon.svg', 
-              width: 24
-            ),
-            onPressed: () => _onItemTapped(1),
-          ),
-          const SizedBox(width: 26),
-          IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/users_icon.svg', 
-              width: 24
-            ),
-            onPressed: () => _onItemTapped(2),
-          ),
-        ],
+      floatingActionButton: _floatingActionButton,
+      bottomNavigationBar: mocha_hive.BottomNavigationBar(
+        onItemTapped: (int index) => _onItemTapped(index),
       ),
     );
   }

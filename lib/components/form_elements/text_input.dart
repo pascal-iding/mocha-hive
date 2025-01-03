@@ -37,10 +37,13 @@ class _TextInputState extends State<TextInput> {
                   widget.label!,
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
-              const SizedBox(height: 9),
+              if (widget.label != null)
+                const SizedBox(height: 9),
               _getTextField(context),
-              const SizedBox(height: 9),
-              _getAdditionalInfoField(context),
+              if (widget.additionalInfo == null)
+                const SizedBox(height: 9),
+              if (widget.additionalInfo != null)
+                _getAdditionalInfoField(context),
             ],
           ),
         )
@@ -83,10 +86,6 @@ class _TextInputState extends State<TextInput> {
   }
 
   Widget _getAdditionalInfoField(BuildContext context) {
-    if (widget.additionalInfo == null) {
-      return const SizedBox();
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: widget.additionalInfo!.map((info) {
