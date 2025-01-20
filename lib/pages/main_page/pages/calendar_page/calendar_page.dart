@@ -14,21 +14,11 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  bool _showSearchBar = false;
-
-  void _onTabIndexChanged(int index) {
-    setState(() {
-      _showSearchBar = index == 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MainPageLayout(
       tabBarLength: 2,
       tabBarTitles: const ['Mein Kalender', 'Meine Hangouts'],
-      showSearch: _showSearchBar,
-      onTabIndexChanged: _onTabIndexChanged,
       children: const [
         MyCalendarPage(),
         MyHangoutsPage(),

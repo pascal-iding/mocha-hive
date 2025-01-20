@@ -45,9 +45,9 @@ class _StickyHeaderState extends State<StickyHeader> {
                   tabs: widget.tabBarTitles.map((title) => _getTab(title)).toList(),
                 ),
               ),
-              if (widget.showSearch!)
+              if (widget.showSearch)
                 const SizedBox(height: 17),
-              if (widget.showSearch!)
+              if (widget.showSearch)
                 const TextInput(
                   hint: 'Suche ...',
                 ),

@@ -13,21 +13,11 @@ class FriendsPage extends StatefulWidget {
 }
 
 class _FriendsPageState extends State<FriendsPage> {
-  bool _showSearchBar = true;
-
-  void _onTabIndexChanged(int index) {
-    setState(() {
-      _showSearchBar = index == 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MainPageLayout(
       tabBarLength: 2,
       tabBarTitles: const ['Freunde', 'Gruppen'],
-      showSearch: _showSearchBar,
-      onTabIndexChanged: _onTabIndexChanged,
       children: [
         FriendsTab(),
         Center(child: Text('MyGroups')),

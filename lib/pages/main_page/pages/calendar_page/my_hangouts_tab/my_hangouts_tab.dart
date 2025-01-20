@@ -5,6 +5,7 @@ import 'package:mocha_hive/components/form_elements/option_selection_field.dart'
 import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/hangout_field/hangout_field.dart';
 import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/date_seperator/date_seperator.dart';
 import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
+import 'package:mocha_hive/stores/mutations/search_bar.dart';
 
 
 class MyHangoutsPage extends StatefulWidget {
@@ -24,6 +25,7 @@ class _MyHangoutsPageState extends State<MyHangoutsPage> {
   @override
   Widget build(BuildContext context) {
     SetOnFloatingActionButtonClicked(() => print('FloatingActionButton clicked'));
+    SetOnSearchBarChanged(() => print('Search bar changed'));
 
     return Padding(
       padding: const EdgeInsets.only(top: 17.0),

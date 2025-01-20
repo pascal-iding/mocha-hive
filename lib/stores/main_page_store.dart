@@ -8,5 +8,5 @@ class MainPageStore extends VxStore {
   // This function is called when the floating action button is clicked.
   // If it is null, the floating action button is not displayed.
   Function? onFloatingActionButtonClicked;
-
+  Function? onSearchBarChanged;
 }

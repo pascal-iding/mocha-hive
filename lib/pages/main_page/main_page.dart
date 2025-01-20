@@ -4,6 +4,7 @@ import 'package:vxstate/vxstate.dart';
 
 import 'package:mocha_hive/pages/main_page/pages/calendar_page/calendar_page.dart';
 import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_page.dart';
+import 'package:mocha_hive/pages/main_page/pages/hangouts_page/hangouts_page.dart';
 import 'package:mocha_hive/pages/main_page/sidebar/sidebar.dart';
 import 'package:mocha_hive/pages/main_page/bottom_navigation_bar/bottom_navigation_bar.dart' as mocha_hive;
 import 'package:mocha_hive/stores/main_page_store.dart';
@@ -34,7 +35,7 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     _pagesList = <Widget>[
       CalendarPage(),
-      Text('Hangouts'),
+      HangoutsPage(),
       FriendsPage(),
     ];
   }
@@ -59,6 +60,7 @@ class _MainPageState extends State<MainPage> {
         children: [
           Expanded(
             child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
               children: _pagesList,
             ),

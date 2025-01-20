@@ -1,17 +1,22 @@
 
 import 'package:flutter/material.dart';
+import 'package:vxstate/vxstate.dart';
 
 import 'package:mocha_hive/layouts/main_page_layout/default_appbar/default_appbar.dart';
 import 'package:mocha_hive/layouts/main_page_layout/sticky_header/sticky_header.dart';
+import 'package:mocha_hive/stores/main_page_store.dart';
+import 'package:mocha_hive/stores/mutations/search_bar.dart';
 
 
 class MainPageLayout extends StatefulWidget {
+  // If tabBarLength is 0, then the first element in this list will be displayed.
   final List<Widget> children;
+  // Set length to 0 if you don't want a tab bar.
   final int tabBarLength;
   final List<String> tabBarTitles;
   final bool? showBackButton;
-  final bool showSearch;
   final Function? onTabIndexChanged;
+  final bool hideStickyHeader;
 
   const MainPageLayout({
     super.key, 
@@ -19,8 +24,8 @@ class MainPageLayout extends StatefulWidget {
     this.tabBarLength = 0,
     this.tabBarTitles = const [],
     this.showBackButton = false,
-    this.showSearch = true,
     this.onTabIndexChanged,
+    this.hideStickyHeader = false,
   });
 
   @override
@@ -40,6 +45,9 @@ class _MainPageLayoutState extends State<MainPageLayout> {
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [SetOnSearchBarChanged]);
+    MainPageStore store = VxState.store as MainPageStore;
+
     return Column(
       children: [
         const DefaultAppBar(
@@ -52,11 +60,12 @@ class _MainPageLayoutState extends State<MainPageLayout> {
             length: widget.tabBarLength,
             child: CustomScrollView(
               slivers: [
-                StickyHeader(
-                  tabBarTitles: widget.tabBarTitles, 
-                  onTabChange: _onTabChange,
-                  showSearch: widget.showSearch,
-                ),
+                if (!widget.hideStickyHeader)
+                  StickyHeader(
+                    tabBarTitles: widget.tabBarTitles, 
+                    onTabChange: _onTabChange,
+                    showSearch: store.onSearchBarChanged != null,
+                  ),
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [

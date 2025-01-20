@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_tab/friend_tile/friend_tile.dart';
-import 'package:mocha_hive/components/DynamicFloatingActionButton.dart';
 import 'add_friend_modal/add_friend_modal.dart';
 import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
+import 'package:mocha_hive/stores/mutations/search_bar.dart';
 
 
 class FriendsTab extends StatefulWidget {
@@ -46,9 +46,14 @@ class _FriendsTabState extends State<FriendsTab> {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     SetOnFloatingActionButtonClicked(() => showModal(context));
+    SetOnSearchBarChanged(() => print('Search bar changed'));
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.only(top: 17.0),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

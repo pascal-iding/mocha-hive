@@ -1,3 +1,5 @@
+
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class FriendTile extends StatefulWidget {
@@ -30,25 +32,30 @@ class _FriendTileState extends State<FriendTile> {
           Align(
             alignment: Alignment.bottomCenter,
             child: IntrinsicHeight(
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
-                color: Color.fromARGB(217, 255, 255, 255),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.friend['name']!, 
-                      style: Theme.of(context).textTheme.labelLarge
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
+                    color: const Color.fromARGB(150, 255, 255, 255).withOpacity(0.6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.friend['name']!, 
+                          style: Theme.of(context).textTheme.labelLarge
+                        ),
+                        Text(
+                          '@${widget.friend['username']!}', 
+                          style: Theme.of(context).textTheme.labelMedium
+                        ),
+                      ],
                     ),
-                    Text(
-                      '@${widget.friend['username']!}', 
-                      style: Theme.of(context).textTheme.labelMedium
-                    ),
-                  ],
+                  ),
                 ),
-              )
-            )
+              ),
+            ),
           )
         ]
       ),
