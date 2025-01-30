@@ -8,32 +8,4 @@ This will be an open source and self hostable mobile app that allows users to ad
 
 # Design
 
-<div style="display: flex; flex-wrap: wrap;">
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/signin1.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/signin2.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/signin3.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/Freunde.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/Calendar.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/hangouts.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/groupdetail.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/groups.jpg" style="width: 100%;">
-  </div>
-  <div style="flex: 1 1 30%; padding: 5px;">
-    <img src="./documentation/mockups/My%20Hangouts.jpg" style="width: 100%;">
-  </div>
-</div>
+See [./documentation/mockups/](./documentation/mockups/)
