@@ -27,12 +27,10 @@ class _HangoutsPageState extends State<HangoutsPage> {
 
     return const MainPageLayout(
       tabBarLength: 0,
-      hideStickyHeader: true,
+      hideAppbar: true,
+      padding: EdgeInsets.only(left: 0, right: 0, bottom: 0),
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: 17.0),
-          child: HangoutsList(),
-        )
+        HangoutsList()
       ],
     );
   }

@@ -58,9 +58,12 @@ class DefaultAppBar extends StatelessWidget {
                   ),
                 ]
               ),
-              SvgPicture.asset(
-                'assets/icons/menu_icon.svg',
-                width: 24
+              GestureDetector(
+                onTap: () => Scaffold.of(context).openEndDrawer(),
+                child: SvgPicture.asset(
+                  'assets/icons/menu_icon.svg',
+                  width: 24
+                ),
               )
             ]
           ),

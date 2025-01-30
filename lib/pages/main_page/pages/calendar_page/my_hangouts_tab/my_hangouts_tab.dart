@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/components/form_elements/option_selection_field.dart';
-import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/hangout_field/hangout_field.dart';
-import 'package:mocha_hive/pages/main_page/pages/calendar_page/my_hangouts_tab/date_seperator/date_seperator.dart';
 import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
 import 'package:mocha_hive/stores/mutations/search_bar.dart';
+import 'package:mocha_hive/components/dropdown_list/dropdown_list.dart';
 
 
 class MyHangoutsPage extends StatefulWidget {
@@ -29,19 +27,69 @@ class _MyHangoutsPageState extends State<MyHangoutsPage> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 17.0),
-      child: Column(
-        children: [
-          OptionSelectionField(
-            onIndexChanged: _onIndexChanged,
+      child: DropdownList(
+        dropdownGroups: [
+          DropdownGroup(
+            headerTitle: 'Von mir erstellt',
+            headerIcon: 'assets/icons/eye_icon.svg',
+            items: [
+              DropdownItem(
+                title: 'Fußball spielen', 
+                additionalInfo: 'Erstellt am 12.09.2021', 
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/test_profile_picture.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              DropdownItem(
+                title: 'Fußball spielen', 
+                additionalInfo: 'Erstellt am 12.09.2021', 
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/test_profile_picture.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
-          const SizedBox(height: 17.0),
-          DateSeperator(date: DateTime.now()),
-          const SizedBox(height: 17.0),
-          HangoutField(
-            profilePicture: 'assets/images/test_profile_picture.png',
-            title: 'Kaffee trinken',
-          )
-        ]
+          DropdownGroup(
+            headerTitle: 'Von mir markiert',
+            headerIcon: 'assets/icons/heart_icon.svg',
+            items: [
+              DropdownItem(
+                title: 'Fußball spielen', 
+                additionalInfo: 'Erstellt am 12.09.2021', 
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/test_profile_picture.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              DropdownItem(
+                title: 'Fußball spielen', 
+                additionalInfo: 'Erstellt am 12.09.2021', 
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/test_profile_picture.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
       )
     );
   }

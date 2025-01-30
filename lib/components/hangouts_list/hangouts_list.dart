@@ -45,75 +45,18 @@ class _HangoutsListState extends State<HangoutsList> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HangoutListControls(),
-        const SizedBox(height: 10),
-        Text(
-          '${_currentHangoutIndex + 1}/${_hangouts.length}',
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        const SizedBox(height: 10),
-        Stack(
-          children: [
-            // If user swipes to the right, show the previous hangout
-            Opacity(
-              opacity: _position.dx > 0 ? 1 : 0,
-              child: _hangouts[_currentHangoutIndex == 0 ? _hangouts.length - 1: _currentHangoutIndex - 1],
-            ),
-            // If user swipes to the left, show the next hangout
-            Opacity(
-              opacity: _position.dx < 0 ? 1 : 0,
-              child: _hangouts[_currentHangoutIndex + 1 >= _hangouts.length ? 0 : _currentHangoutIndex + 1],
-            ),
-            _getHangout(),
-          ],
+        // HangoutListControls(),
+        // const SizedBox(height: 10),
+        Expanded(
+          child: PageView(
+            children: [
+              for (var hangout in _hangouts)
+                hangout
+            ],
+          ),
         )
       ],
-    );
-  }
-
-  Widget _getHangout() {
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        setState(() {
-          _position = Offset((_position.dx + details.primaryDelta!).clamp(-100.0, 100.0), 0);
-        });
-      },
-      onHorizontalDragEnd: (details) {
-        final dx = details.primaryVelocity!;
-        
-        if (_position.dx.abs() < 100){
-          setState(() {
-            _position = const Offset(0, 0);
-          });
-          return;
-        }
-
-        if (dx > 0) {
-          print('Swipe right');
-          setState(() {
-            _currentHangoutIndex = _currentHangoutIndex - 1 < 0 
-              ? _hangouts.length - 1 
-              : _currentHangoutIndex - 1;
-            _position = Offset(0, 0);
-          });
-        } else {
-          setState(() {
-            _currentHangoutIndex = _currentHangoutIndex + 1 >= _hangouts.length 
-              ? 0
-              : _currentHangoutIndex + 1;
-            _position = Offset(0, 0);
-          });
-        }
-      },
-      child: Transform.translate(
-        offset: _position,
-        child: Transform.rotate(
-          angle: (_position.dx / 100.0) * (pi / 8),
-          child: _hangouts[_currentHangoutIndex],
-        ),
-      ),
     );
   }
 }

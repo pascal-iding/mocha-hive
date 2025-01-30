@@ -11,6 +11,8 @@ import 'package:mocha_hive/stores/main_page_store.dart';
 import 'package:mocha_hive/components/DynamicFloatingActionButton.dart';
 import 'package:mocha_hive/stores/mutations/floating_action_button.dart';
 
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
 /// The main page is responsible for the 3 main sections of the app:
 /// - Calendar
@@ -54,6 +56,7 @@ class _MainPageState extends State<MainPage> {
     MainPageStore store = VxState.store as MainPageStore;
 
     return Scaffold(
+      key: _scaffoldKey,
       endDrawer: const Sidebar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

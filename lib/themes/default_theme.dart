@@ -9,6 +9,7 @@ class DefaultTheme {
   ColorScheme colorSchemeLight() => const ColorScheme(
     primary: Color.fromARGB(255, 102, 152, 185),
     secondary: Color.fromARGB(255, 154, 54, 54),
+    tertiary: Color.fromARGB(255, 24, 23, 23),
     surface: Color.fromARGB(255, 255, 255, 255),
     surfaceContainer: Color.fromARGB(255, 234, 237, 239),
     surfaceContainerHigh: Color.fromARGB(255, 235, 242, 246),
@@ -64,7 +65,7 @@ class DefaultTheme {
     // Ins Kino gehen
     bodyLarge: TextStyle(
       fontSize: 24,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       fontFamily: 'Lato',
       color: colorScheme.onSurface,
     ),

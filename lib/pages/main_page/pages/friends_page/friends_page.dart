@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mocha_hive/layouts/main_page_layout/main_page_layout.dart';
+import 'package:mocha_hive/layouts/main_page_layout/main_page_layout_sticky_scroll.dart';
 import 'package:mocha_hive/pages/main_page/pages/friends_page/friends_tab/friends_tab.dart';
+import 'package:mocha_hive/pages/main_page/pages/friends_page/groups_tab/group_tab.dart';
 
 
 class FriendsPage extends StatefulWidget {
@@ -15,12 +16,12 @@ class FriendsPage extends StatefulWidget {
 class _FriendsPageState extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
-    return MainPageLayout(
+    return MainPageLayoutStickyScroll(
       tabBarLength: 2,
       tabBarTitles: const ['Freunde', 'Gruppen'],
       children: [
         FriendsTab(),
-        Center(child: Text('MyGroups')),
+        GroupTab(),
       ],
     );
   }

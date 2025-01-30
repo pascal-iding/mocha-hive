@@ -27,74 +27,101 @@ class Hangout extends StatefulWidget {
 class _HangoutState extends State<Hangout> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 5, bottom: 0, left: 15, right: 15),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        border: Border(
-          left: BorderSide(
-            color: Theme.of(context).dividerColor,
-            width: 1.0,
-          ),
-        ),
-      ),
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(widget.category),
-                fit: BoxFit.cover,
+          _getCategoryImage(),
+          Transform.translate(
+            offset: Offset(0, -30),
+            child: Padding(
+              padding: EdgeInsets.only(left: 25, right: 25, bottom: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _getCreatorImage(),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '@sara_123',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Text(
+                        '1/12',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  _getEntry(widget.title, widget.description),
+                  _getEntry('Datum', widget.date),
+                  _getEntry('Gruppengröße', '${widget.groupSize} Personen'),
+                  _getEntry('Treffpunkt/ Wegbeschr.', widget.meetingPoint, hideDivider: true),
+                  const SizedBox(height: 10),
+                  const LikeList(),
+                ],
               ),
-              borderRadius: BorderRadius.circular(8),
             ),
-          ),
-          const SizedBox(height: 10),
-          _getEntry(widget.title, widget.description),
-          const SizedBox(height: 15),
-          _getEntry("Datum", widget.date),
-          const SizedBox(height: 15),
-          _getEntry("Gruppengröße", widget.groupSize),
-          const SizedBox(height: 15),
-          _getEntry("Treffpunkt/ Wegbeschr.", widget.meetingPoint),
-          const SizedBox(height: 15),
-          LikeList(),
+          )
         ],
       ),
     );
   }
 
-  Widget _getEntry(String title, String description) {
+  Widget _getCreatorImage() {
+    return Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/test_friend_picture.png'),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    );
+  }
+
+  Widget _getCategoryImage() {
+    return AspectRatio(
+      aspectRatio: 1/1,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(35.0),
+          bottomRight: Radius.circular(35.0),
+        ),
+        child: Image.asset(
+          widget.category,
+          fit: BoxFit.cover,
+        ),
+      )
+    );
+  }
+
+  Widget _getEntry(String title, String description, {bool hideDivider=false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Transform.translate(
-          offset: const Offset(-20, 0),
-          child: Row(
-            children: [
-              Icon(
-                Icons.circle,
-                size: 10.0,
-                color: Theme.of(context).dividerColor,
-              ),
-              const SizedBox(width: 10),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-            ],
+        const SizedBox(height: 10),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
           ),
         ),
         Text(
           description,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
+        const SizedBox(height: 10),
+        if (!hideDivider)
+          Divider(
+            color: Theme.of(context).dividerColor,
+            thickness: 1.0,
+          ),
       ],
     );
   }

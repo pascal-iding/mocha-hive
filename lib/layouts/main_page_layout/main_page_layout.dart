@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:vxstate/vxstate.dart';
 
 import 'package:mocha_hive/layouts/main_page_layout/default_appbar/default_appbar.dart';
-import 'package:mocha_hive/layouts/main_page_layout/sticky_header/sticky_header.dart';
 import 'package:mocha_hive/stores/main_page_store.dart';
 import 'package:mocha_hive/stores/mutations/search_bar.dart';
 
@@ -16,7 +15,8 @@ class MainPageLayout extends StatefulWidget {
   final List<String> tabBarTitles;
   final bool? showBackButton;
   final Function? onTabIndexChanged;
-  final bool hideStickyHeader;
+  final bool hideAppbar;
+  final EdgeInsets padding;
 
   const MainPageLayout({
     super.key, 
@@ -25,7 +25,8 @@ class MainPageLayout extends StatefulWidget {
     this.tabBarTitles = const [],
     this.showBackButton = false,
     this.onTabIndexChanged,
-    this.hideStickyHeader = false,
+    this.hideAppbar = false,
+    this.padding = const EdgeInsets.only(left: 25, right: 25, bottom: 25),
   });
 
   @override
@@ -45,38 +46,20 @@ class _MainPageLayoutState extends State<MainPageLayout> {
 
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context, on: [SetOnSearchBarChanged]);
-    MainPageStore store = VxState.store as MainPageStore;
-
     return Column(
       children: [
-        const DefaultAppBar(
-          title: 'MochaHive',
-          showBackButton: false,
-        ),
+        if (!widget.hideAppbar)
+          const DefaultAppBar(
+            title: 'MochaHive',
+            showBackButton: false,
+          ),
 
         Expanded(
           child: DefaultTabController(
             length: widget.tabBarLength,
-            child: CustomScrollView(
-              slivers: [
-                if (!widget.hideStickyHeader)
-                  StickyHeader(
-                    tabBarTitles: widget.tabBarTitles, 
-                    onTabChange: _onTabChange,
-                    showSearch: store.onSearchBarChanged != null,
-                  ),
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Container(
-                        padding: const EdgeInsets.only(left: 25, right: 25, bottom: 25),
-                        child: widget.children[_tabBarIndex],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child: Container(
+              padding: widget.padding,
+              child: widget.children[_tabBarIndex],
             ),
           ),
         ),
